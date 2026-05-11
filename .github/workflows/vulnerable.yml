@@ -1,0 +1,14 @@
+name: Vulnerable Issue Logger
+
+# Diese Action startet immer dann, wenn ein Issue geöffnet oder bearbeitet wird
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  log-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Issue Title
+        # HIER IST DER FEHLER! Wir vertrauen der Benutzereingabe blind.
+        run: echo "Das Issue hat den Titel: ${{ github.event.issue.title }}"
